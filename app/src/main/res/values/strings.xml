@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Clean MVVM App</string>
+    <string name="active">Active</string>
+    <string name="inactive">Inactive</string>
+    <string name="unable_load_data">Please try again! Unable load you data at this time.</string>
+</resources>
