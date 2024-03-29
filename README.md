@@ -8,5 +8,6 @@ Android - clean architecture using MVVM, Room, Retrofit and Jetpack Compose
 5. Retrofit
 6. Clean architecture
 
-![screenshot](demo-screenshot.png)
+![demo-screenshot](https://github.com/sushilsolanki8875/CleanMVVMDemo/assets/11073493/f7c41883-d832-4497-8ec6-fc3445c85b34)
+
 
