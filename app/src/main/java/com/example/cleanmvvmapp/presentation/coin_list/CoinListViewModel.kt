@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.cleanmvvmapp.domain.usecases.GetCoinListUseCase
 import com.example.cleanmvvmapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,7 +30,7 @@ class CoinListViewModel @Inject constructor(
         _state.update {
             it.copy(isLoading = true)
         }
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             when(val result = getCoinListUseCase()){
                 is Resource.Success -> {
                     _state.update {

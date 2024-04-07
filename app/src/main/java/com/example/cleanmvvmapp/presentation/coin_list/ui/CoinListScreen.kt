@@ -19,6 +19,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.cleanmvvmapp.R
 import com.example.cleanmvvmapp.domain.model.Coin
 import com.example.cleanmvvmapp.presentation.coin_list.CoinListViewModel
+import com.example.cleanmvvmapp.utils.TestTag.COIN_LIST_CIRCULAR_PROGRESS
+import com.example.cleanmvvmapp.utils.TestTag.COIN_LIST_ITEM_STATUS
+import com.example.cleanmvvmapp.utils.TestTag.COIN_LIST_ITEM_TITLE
+import com.example.cleanmvvmapp.utils.TestTag.COIN_LIST_VIEW
 
 @Composable
 fun CoinListScreen(
@@ -45,13 +50,15 @@ fun CoinListScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator()
+                CircularProgressIndicator(modifier = Modifier.testTag(COIN_LIST_CIRCULAR_PROGRESS))
             }
         }
 
         if (state.value.coinList.isNotEmpty()) {
 
-            LazyColumn(Modifier.fillMaxSize()) {
+            LazyColumn(Modifier.fillMaxSize().
+            testTag(COIN_LIST_VIEW))
+            {
                 items(state.value.coinList) { item: Coin ->
                     CoinItem(item)
                     HorizontalDivider()
@@ -93,13 +100,14 @@ fun CoinItem(
             style = MaterialTheme.typography.bodyMedium,
             color = Color.White,
             modifier = Modifier
-                .weight(1f)
+                .weight(1f).testTag(COIN_LIST_ITEM_TITLE)
         )
 
         Text(
             text = if (coin.isActive) stringResource(id = R.string.active) else stringResource(id = R.string.inactive),
             style = MaterialTheme.typography.bodySmall,
-            color = if (coin.isActive) Color.Green else Color.Red
+            color = if (coin.isActive) Color.Green else Color.Red,
+            modifier = Modifier.testTag(COIN_LIST_ITEM_STATUS)
         )
 
     }

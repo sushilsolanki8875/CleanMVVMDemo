@@ -5,3 +5,7 @@ sealed class Resource<out T>(val data: T?) {
     class Error<T>(throwable: Throwable): Resource<T>(null)
     class Loading<T>(isLoading: Boolean): Resource<T>(null)
 }
+
+class mainTest(){
+
+}
